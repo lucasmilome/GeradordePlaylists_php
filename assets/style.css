@@ -1,0 +1,242 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1F3989;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main.container {
+    flex: 1;
+    padding: 2rem;
+}
+
+
+/* HEADER.PHP */
+header {
+    padding: 20px;
+    max-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+header h1 {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 40px;
+}
+
+header p {
+    font-size: 20px;
+}
+
+/* INDEX.PHP */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.container h2 {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.humores {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1rem;
+    margin: 20px 0;
+}
+
+.humores button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+    border: none;
+    border-radius: 12px;
+    width: 175px;
+    height: 160px;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.humores i {
+    font-size: 40px;
+    transition: 0.2s ease;
+}
+
+.humores h3 {
+    font-weight: 500;
+    font-size: 25px;
+    margin: 0;
+}     
+
+.humores p {
+    font-weight: 400;
+    margin-top: 0px;
+    font-size: 15px;
+}
+
+.humores button:hover {
+    transform: scale(1.05);
+    filter: brightness(1);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+
+/* === CORES BASE === */
+.feliz { background-color: #D19B2C; }
+.triste { background-color: #5D7AE0; }
+.foco { background-color: #3EAA9B; }
+.treino { background-color: #C55177; }
+
+/* === BOTÃO PERSONALIZADO === */
+.humores button.personalizado {
+    background-color: #121212; 
+    width: 50px;
+    height: 50px;  
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px; 
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s; 
+}
+.personalizado:hover {
+    transform: scale(1.1);
+}
+
+/* === ÍCONES PADRÃO (SEM FILL) === */
+.feliz i::before {
+    content: "\f417"; /* bi-heart */
+}
+.triste i::before {
+    content: "\f5fd"; /* bi-umbrella */
+}
+.foco i::before {
+    content: "\f46b"; /* bi-lightbulb */
+}
+.treino i::before {
+    content: "\f46d"; /* bi-lightning-charge */
+}
+
+/* === AO PASSAR O MOUSE (FILL) === */
+.feliz:hover i::before {
+    content: "\f415"; /* bi-heart-fill */
+}
+.triste:hover i::before {
+    content: "\f5fc"; /* bi-umbrella-fill */
+}
+.foco:hover i::before {
+    content: "\f468"; /* bi-lightbulb-fill */
+}
+.treino:hover i::before {
+    content: "\f46c"; /* bi-lightning-charge-fill */
+}
+
+
+.filtros {
+    background-color: #28378C;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.filtros label {
+    display: block;
+    margin: 10px 0;
+}
+
+.filtros textarea {
+    width: 100%;
+    border-radius: 8px;
+    padding: 8px;
+    resize: none;
+    border: none;
+    margin-top: 5px;
+}
+
+input, select {
+    padding: 5px;
+    border-radius: 6px;
+    border: none;
+}
+
+.gerar-btn {
+    background-color: #FFD700;
+    color: #1E2A78;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.gerar-btn:hover {
+    background-color: #FFE55C;
+}
+
+/* GERAR.PHP */
+.playlist {
+    background-color: #28378C;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.musica {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #1E2A78;
+    border-radius: 8px;
+}
+
+.musica a {
+    color: #FFD700;
+    text-decoration: none;
+}
+
+.voltar-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: #FFD700;
+    color: #1E2A78;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.voltar-btn:hover {
+    background-color: #FFE55C;
+}
+
+/* FOOTER.PHP */
+footer {
+    width: 100%;
+    max-height: 300px;
+    
+}
