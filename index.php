@@ -39,8 +39,7 @@
 
             <input type="hidden" name="humor" id="humorInput">
 
-            <!-- Campo extra pro humor personalizado -->
-            <div id="campoPersonalizado">
+            <div id="campoPersonalizado" style="display: none;">
                 <label>
                     Descreva como você está se sentindo:
                     <textarea name="descricao" rows="2" placeholder="Ex: Calmo mas inspirado, querendo relaxar..."></textarea>
@@ -48,44 +47,44 @@
             </div>
 
             <label>
-                Quantidade de músicas:
-                <input type="number" name="quantidade" min="3" max="20" value="10">
+                Quantidade de músicas: <strong id="valorQuantidade">10</strong>
+                <input type="range" name="quantidade" min="3" max="30" value="10" id="sliderQuantidade">
             </label>
-            <label>
-                Região ou Gênero:
-                <select name="regiao" id="select-real" style="display: none;">
-                    <option value="" disabled selected>Escolha uma opção</option>
-                    <option value="afrobeat">Afrobeat</option>
-                    <option value="brasil">Brasil</option>
-                    <option value="eletronica">Eletrônica (Global)</option>
-                    <option value="hiphop">Hip-Hop (Global)</option>
-                    <option value="internacional">Internacional (Geral)</option>
-                    <option value="jpop">J-Pop (Japão)</option>
-                    <option value="kpop">K-Pop (Coreia)</option>
-                    <option value="latina">Música Latina</option>
-                    <option value="pop">Pop (Global)</option>
-                    <option value="rock">Rock (Global)</option>
-                </select>
+            <label for="select-real" style="margin-bottom: 0px;">Região ou Gênero:</label>
 
-                <div class="custom-select-wrapper">
-                    <div class="custom-select-trigger">
-                        <span>Escolha uma opção</span>
-                        <div class="arrow"></div>
-                    </div>
-                    <div class="custom-options">
-                        <span class="custom-option" data-value="afrobeat">Afrobeat</span>
-                        <span class="custom-option" data-value="brasil">Brasil</span>
-                        <span class="custom-option" data-value="eletronica">Eletrônica (Global)</span>
-                        <span class="custom-option" data-value="hiphop">Hip-Hop (Global)</span>
-                        <span class="custom-option" data-value="internacional">Internacional (Geral)</span>
-                        <span class="custom-option" data-value="jpop">J-Pop (Japão)</span>
-                        <span class="custom-option" data-value="kpop">K-Pop (Coreia)</span>
-                        <span class="custom-option" data-value="latina">Música Latina</span>
-                        <span class="custom-option" data-value="pop">Pop (Global)</span>
-                        <span class="custom-option" data-value="rock">Rock (Global)</span>
-                    </div>
+            <select name="regiao" id="select-real" style="display:none;">
+                <option value="" disabled selected>Escolha uma opção</option>
+                <option value="afrobeat">Afrobeat</option>
+                <option value="brasil">Brasil</option>
+                <option value="eletronica">Eletrônica (Global)</option>
+                <option value="hiphop">Hip-Hop (Global)</option>
+                <option value="internacional">Internacional (Geral)</option>
+                <option value="jpop">J-Pop (Japão)</option>
+                <option value="kpop">K-Pop (Coreia)</option>
+                <option value="latina">Música Latina</option>
+                <option value="pop">Pop (Global)</option>
+                <option value="rock">Rock (Global)</option>
+            </select>
+
+            <div class="custom-select-wrapper">
+                <div class="custom-select-trigger">
+                    <span>Escolha uma opção</span>
+                    <div class="arrow"></div>
                 </div>
-            </label>
+                <div class="custom-options">
+                    <span class="custom-option" data-value="afrobeat">Afrobeat</span>
+                    <span class="custom-option" data-value="brasil">Brasil</span>
+                    <span class="custom-option" data-value="eletronica">Eletrônica (Global)</span>
+                    <span class="custom-option" data-value="hiphop">Hip-Hop (Global)</span>
+                    <span class="custom-option" data-value="internacional">Internacional (Geral)</span>
+                    <span class="custom-option" data-value="jpop">J-Pop (Japão)</span>
+                    <span class="custom-option" data-value="kpop">K-Pop (Coreia)</span>
+                    <span class="custom-option" data-value="latina">Música Latina</span>
+                    <span class="custom-option" data-value="pop">Pop (Global)</span>
+                    <span class="custom-option" data-value="rock">Rock (Global)</span>
+                </div>
+            </div>
+
             <label>
                 Artista base (opcional):
                 <input type="text" name="artista" placeholder="Ex: Anitta, Imagine Dragons...">
@@ -126,7 +125,6 @@
             const humor = btn.dataset.humor;
             humorInput.value = humor;
 
-            // Esta linha foi da sugestão anterior (animação dos filtros)
             filtros.classList.add('filtros-visivel'); 
             
             window.scrollTo({ top: filtros.offsetTop, behavior: 'smooth' });
@@ -140,34 +138,48 @@
     });
 
     const wrapper = document.querySelector('.custom-select-wrapper');
-    const trigger = document.querySelector('.custom-select-trigger');
-    const triggerText = trigger.querySelector('span');
-    const options = document.querySelectorAll('.custom-option');
-    const realSelect = document.getElementById('select-real');
+    
+    if (wrapper) { 
+        const trigger = wrapper.querySelector('.custom-select-trigger');
+        const triggerText = trigger.querySelector('span');
+        const options = wrapper.querySelectorAll('.custom-option');
+        const realSelect = document.getElementById('select-real');
 
-    trigger.addEventListener('click', () => {
-        wrapper.classList.toggle('open');
-    });
-
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-            const selectedValue = option.dataset.value;
-            const selectedText = option.textContent;
-
-            triggerText.textContent = selectedText;
-            
-            realSelect.value = selectedValue;
-
-            wrapper.classList.remove('open');
+        trigger.addEventListener('click', () => {
+            wrapper.classList.toggle('open');
         });
-    });
 
-    window.addEventListener('click', (e) => {
-        if (wrapper && !wrapper.contains(e.target)) {
-            wrapper.classList.remove('open');
-        }
-    });
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const selectedValue = option.dataset.value;
+                const selectedText = option.textContent;
+
+                triggerText.textContent = selectedText;
+                
+                realSelect.value = selectedValue;
+
+                wrapper.classList.remove('open');
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!wrapper.contains(e.target)) {
+                wrapper.classList.remove('open');
+            }
+        });
+    };
+
+    const slider = document.getElementById('sliderQuantidade');
+    const valorDisplay = document.getElementById('valorQuantidade');
+
+    // Garante que só executa se o slider existir na página
+    if (slider && valorDisplay) {
+        
+        // 'input' é o evento que dispara ENQUANTO você arrasta
+        slider.addEventListener('input', () => {
+            valorDisplay.textContent = slider.value;
+        });
+    };
 
 </script>
-
 <?php include 'includes/footer.php'; ?>

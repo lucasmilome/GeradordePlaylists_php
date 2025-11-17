@@ -154,8 +154,7 @@ header p {
     content: "\f46c"; /* bi-lightning-charge-fill */
 }
 
-.filtros,
-.playlist {
+.filtros {
     background-color: rgba(0, 0, 0, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -169,6 +168,7 @@ header p {
     padding-bottom: 0;
     margin-top: 0;
     transition: all 0.5s ease-in-out;
+    position: relative;
 }
 
 .filtros-visivel {
@@ -176,6 +176,8 @@ header p {
     opacity: 1;
     padding: 25px; 
     margin-top: 20px; 
+    overflow: visible;
+    z-index: 5;
 }
 
 .filtros label {
@@ -217,12 +219,63 @@ header p {
     background-size: 10px;
 }
 
+#valorQuantidade {
+    color: #FFD700; 
+    font-size: 1rem;
+    padding-left: 0.5rem;
+}
+
+input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.3); 
+    border: 1px solid #4a64b8;
+    border-radius: 5px;
+    margin-top: 15px; 
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+input[type="range"]:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    background: #FFD700; 
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #1F3989; 
+    transition: transform 0.1s ease;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    background: #FFD700;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #1F3989;
+    transition: transform 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover,
+input[type="range"]::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
 /* === ESTILOS DO DROPDOWN PERSONALIZADO === */
 
 .custom-select-wrapper {
     position: relative;
     width: 100%;
-    margin-top: 8px;
+    margin-top: 0px;
 }
 
 .custom-select-trigger {
@@ -237,6 +290,7 @@ header p {
     cursor: pointer;
     font-size: 0.9rem;
     transition: all 0.2s ease;
+    margin: 8px 0px 15px 0px;
 }
 
 .custom-select-trigger .arrow {
@@ -265,13 +319,11 @@ header p {
     overflow-y: auto;
 }
 
-
 .custom-option {
     display: block;
     padding: 12px;
     color: white;
     cursor: pointer;
-    transition: all 0.2s ease;
 }
 
 .custom-option:hover {
@@ -362,6 +414,18 @@ header p {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.playlist {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+    text-align: left;
+    opacity: 1;
+    max-height: none;
+    overflow: visible;
 }
 
 .musica {

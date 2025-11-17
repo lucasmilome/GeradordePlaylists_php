@@ -12,16 +12,12 @@ require_once 'ia/gerar_playlist.php';
 $resultadoIA = gerarPlaylistIA($humor, $quantidade, $regiao, $artista, $descricao);
 $musicas = json_decode($resultadoIA, true);
 
-$musicas = json_decode($resultadoIA, true);
-
 if (!is_array($musicas)) {
     preg_match('/\[\s*{.*}\s*\]/s', $resultadoIA, $match);
     if ($match) {
         $musicas = json_decode($match[0], true);
     }
 }
-
-
 ?>
 
 <main class="container">
