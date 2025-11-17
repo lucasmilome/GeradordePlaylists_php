@@ -1,7 +1,7 @@
 <?php
 
 function gerarPlaylistIA($humor, $quantidade, $regiao, $artista, $descricao) {
-    $apiKey = "API_KEY_AQUI"; // Substitua pela sua chave de API do Google Gemini
+    $apiKey = "yourkey";
 
     if (!$apiKey) {
         return json_encode(["erro" => "API key não configurada."]);

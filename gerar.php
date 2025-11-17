@@ -15,7 +15,6 @@ $musicas = json_decode($resultadoIA, true);
 $musicas = json_decode($resultadoIA, true);
 
 if (!is_array($musicas)) {
-    // Tentar extrair JSON mesmo que o Gemini tenha colocado texto extra
     preg_match('/\[\s*{.*}\s*\]/s', $resultadoIA, $match);
     if ($match) {
         $musicas = json_decode($match[0], true);
@@ -47,7 +46,8 @@ if (!is_array($musicas)) {
             <?php 
             $i = 0;
             foreach ($musicas as $musica): ?>
-                <div class="musica">
+                <?php $delay = $i * 0.1; ?>
+                <div class="musica" style="--delay: <?= $delay ?>s">
                     <strong><?= $i += 1 ?>. <?= htmlspecialchars($musica['titulo'] ?? 'Sem título') ?></strong><br>
                     <?= htmlspecialchars($musica['artista'] ?? 'Artista desconhecido') ?><br>
                     <?php if (!empty($musica['link'])): ?>

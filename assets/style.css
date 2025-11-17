@@ -1,6 +1,6 @@
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #1F3989;
+    background: radial-gradient(ellipse at center, #2a4aab 0%, #1F3989 70%);
     color: white;
     text-align: center;
     margin: 0;
@@ -75,7 +75,7 @@ header p {
     font-size: 1.1rem;
     color: white;
     cursor: pointer;
-    transition: 0.25s;
+    transition: all 0.3s ease;
 }
 
 .humores i {
@@ -97,32 +97,33 @@ header p {
 
 .humores button:hover {
     transform: scale(1.05);
-    filter: brightness(1);
-    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    filter: brightness(1.1); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3); 
 }
 
 /* === CORES BASE === */
-.feliz { background-color: #D19B2C; }
-.triste { background-color: #5D7AE0; }
+.feliz { background-color: #F59E0B; }
+.triste { background-color: #3B82F6; }
 .foco { background-color: #3EAA9B; }
-.treino { background-color: #C55177; }
+.treino { background-color: #EC4899; }
 
 /* === BOTÃO PERSONALIZADO === */
 .humores button.personalizado {
-    background-color: #121212; 
-    width: 50px;
-    height: 50px;  
+    background-color: transparent;
+    border: 2px dashed rgba(255, 255, 255, 0.5); 
+    width: 175px;
+    height: 160px;
     justify-content: center;
     align-items: center;
-    border: none;
-    border-radius: 12px; 
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s; 
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
 }
 .personalizado:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-style: solid; 
 }
 
 /* === ÍCONES PADRÃO (SEM FILL) === */
@@ -153,33 +154,144 @@ header p {
     content: "\f46c"; /* bi-lightning-charge-fill */
 }
 
-
-.filtros {
-    background-color: #28378C;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
+.filtros,
+.playlist {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
     text-align: left;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    transition: all 0.5s ease-in-out;
+}
+
+.filtros-visivel {
+    max-height: 1000px; 
+    opacity: 1;
+    padding: 25px; 
+    margin-top: 20px; 
 }
 
 .filtros label {
     display: block;
-    margin: 10px 0;
+    margin-bottom: 15px; 
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase; 
+    color: #ddd; 
 }
 
-.filtros textarea {
+.filtros textarea,
+.filtros input,
+.filtros select {
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.2); /* Fundo escuro */
+    color: white; /* Texto branco */
+    border: 1px solid #4a64b8;
     border-radius: 8px;
-    padding: 8px;
-    resize: none;
-    border: none;
+    padding: 10px;
     margin-top: 5px;
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+    transition: all 0.2s ease;
 }
 
-input, select {
-    padding: 5px;
-    border-radius: 6px;
-    border: none;
+.filtros textarea:focus,
+.filtros input:focus,
+.filtros select:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.filtros select {
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2712%27%20height%3D%2712%27%20viewBox%3D%270%200%2012%2012%27%3E%3Cpath%20fill%3D%27%23FFF%27%20d%3D%27M6%209L0%203h12L6%209z%27%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 10px;
+}
+
+/* === ESTILOS DO DROPDOWN PERSONALIZADO === */
+
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.custom-select-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid #4a64b8;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.custom-select-trigger .arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+    transition: all 0.2s ease;
+}
+
+.custom-options {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    right: 0;
+    background-color: #1E2A78; 
+    border: 1px solid #4a64b8;
+    border-radius: 8px;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    max-height: 200px; 
+    overflow-y: auto;
+}
+
+
+.custom-option {
+    display: block;
+    padding: 12px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.custom-option:hover {
+    background-color: #FFD700;
+    color: #1E2A78; 
+}
+
+.custom-select-wrapper.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.custom-select-wrapper.open .custom-select-trigger {
+    border-color: #FFD700; 
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+.custom-select-wrapper.open .arrow {
+    transform: rotate(180deg);
 }
 
 .gerar-btn {
@@ -189,29 +301,77 @@ input, select {
     border: none;
     border-radius: 10px;
     padding: 12px 20px;
-    margin-top: 15px;
+    margin-top: 15px; 
     cursor: pointer;
     transition: 0.2s;
+    width: 100%; 
+    font-size: 1.1rem;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .gerar-btn:hover {
     background-color: #FFE55C;
+    transform: scale(1.02);
 }
 
-/* GERAR.PHP */
-.playlist {
-    background-color: #28378C;
-    padding: 15px;
-    border-radius: 10px;
-    margin-top: 20px;
+.playlists-salvas {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
     text-align: left;
 }
 
+.playlists-salvas li {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: all 0.2s ease;
+}
+
+.playlists-salvas li:hover {
+    border-color: #FFD700;
+    transform: translateX(5px);
+}
+
+.playlists-salvas li strong {
+    color: #FFD700; /* Destaque amarelo */
+    font-size: 1.2rem;
+}
+
+.playlists-salvas li p {
+    margin: 5px 0;
+    color: #eee;
+}
+
+.playlists-salvas li em {
+    font-size: 0.8rem;
+    color: #ccc;
+    font-style: normal;
+}
+
+/* GERAR.PHP */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .musica {
+    background-color: rgba(0, 0, 0, 0.3); 
+    border-radius: 8px;
     margin-bottom: 15px;
     padding: 10px;
-    background-color: #1E2A78;
-    border-radius: 8px;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    animation-delay: var(--delay, 0s);
 }
 
 .musica a {
@@ -237,6 +397,13 @@ input, select {
 /* FOOTER.PHP */
 footer {
     width: 100%;
-    max-height: 300px;
-    
+    padding: 2rem 0;
+    margin-top: 4rem; /* Garante um espaço do conteúdo acima */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0.3rem 0;
 }
