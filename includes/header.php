@@ -12,10 +12,12 @@
 </head>
 <body>
 <header>
-    <h1>
-        <i class="bi bi-music-note-list"></i> 
-        Gerador de Playlists 
-        <i class="bi bi-stars"></i>
-</h1>
+    <a href="index.php" class="header-link">
+        <h1>
+            <i class="bi bi-music-note-list"></i> 
+            Gerador de Playlists 
+            <i class="bi bi-stars"></i>
+        </h1>
+    </a>
     <p>Crie playlists personalizadas baseadas no seu humor e preferências musicais</p>
 </header>

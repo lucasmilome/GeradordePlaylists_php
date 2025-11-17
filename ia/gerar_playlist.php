@@ -7,7 +7,6 @@ function gerarPlaylistIA($humor, $quantidade, $regiao, $artista, $descricao) {
         return json_encode(["erro" => "API key não configurada."]);
     }
 
-    // Prompt para garantir que RETORNE SOMENTE JSON válido
     $prompt = "
 Gere uma playlist com $quantidade músicas.
 Humor: $humor
@@ -45,10 +44,8 @@ Responda **somente** um JSON no formato:
     $response = curl_exec($ch);
     curl_close($ch);
 
-    // Decodifica resposta do Gemini
     $json = json_decode($response, true);
 
-    // Extrai somente o texto
     $texto = $json["candidates"][0]["content"]["parts"][0]["text"] ?? "";
 
     return $texto;

@@ -19,11 +19,24 @@ main.container {
 /* HEADER.PHP */
 header {
     padding: 20px;
-    max-height: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); 
+    box-sizing: border-box; 
+}
+
+.header-link {
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s ease;
+}
+.header-link:hover {
+    transform: scale(1.01); 
 }
 
 header h1 {
@@ -34,10 +47,12 @@ header h1 {
     align-items: center;
     font-weight: 500;
     font-size: 40px;
+    margin-bottom: 0.5rem;
 }
 
 header p {
     font-size: 20px;
+    margin-top: 0;
 }
 
 /* INDEX.PHP */
@@ -389,7 +404,7 @@ input[type="range"]::-moz-range-thumb:hover {
 }
 
 .playlists-salvas li strong {
-    color: #FFD700; /* Destaque amarelo */
+    color: #FFD700;
     font-size: 1.2rem;
 }
 
@@ -402,6 +417,27 @@ input[type="range"]::-moz-range-thumb:hover {
     font-size: 0.8rem;
     color: #ccc;
     font-style: normal;
+}
+
+#campoBuscaPlaylist {
+    width: 100%;
+    padding: 12px;
+    margin-top: 0rem; 
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid #4a64b8;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+#campoBuscaPlaylist:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
 }
 
 /* GERAR.PHP */
@@ -426,21 +462,130 @@ input[type="range"]::-moz-range-thumb:hover {
     opacity: 1;
     max-height: none;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .musica {
     background-color: rgba(0, 0, 0, 0.3); 
     border-radius: 8px;
-    margin-bottom: 15px;
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 20px; 
+    margin-bottom: 0;
     animation: fadeIn 0.5s ease-out forwards;
     opacity: 0;
     animation-delay: var(--delay, 0s);
 }
 
-.musica a {
-    color: #FFD700;
+.musica-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.musica-info strong {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.musica-info span {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.musica-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: #FFD700; 
+    color: #1E2A78; 
+    border-radius: 50%;
     text-decoration: none;
+    font-size: 1.5rem; 
+    transition: all 0.2s ease;
+    font-weight: normal;
+    margin-top: 0;
+}
+
+.musica-link:hover {
+    background-color: #FFE55C;
+    transform: scale(1.1);
+    color: #1E2A78;
+}
+
+.salvar-form {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid #FFD700; /* Borda amarela para destacar */
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 30px;
+    text-align: left;
+}
+
+.salvar-form h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    color: #FFD700;
+}
+
+.salvar-form label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #ddd;
+}
+
+/* Reutilizando estilos dos inputs dos filtros */
+.salvar-form input[type="text"],
+.salvar-form textarea {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 1px solid #4a64b8;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.salvar-form input[type="text"]:focus,
+.salvar-form textarea:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+}
+
+.salvar-form textarea {
+    resize: vertical;
+}
+
+.salvar-btn {
+    background-color: #3B82F6; /* Um azul diferente */
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.salvar-btn:hover {
+    background-color: #2563EB;
+    transform: scale(1.02);
 }
 
 .voltar-btn {
@@ -458,16 +603,119 @@ input[type="range"]::-moz-range-thumb:hover {
     background-color: #FFE55C;
 }
 
+
 /* FOOTER.PHP */
 footer {
     width: 100%;
     padding: 2rem 0;
-    margin-top: 4rem; /* Garante um espaço do conteúdo acima */
+    margin-top: 4rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.1); 
     color: #ccc;
     font-size: 0.9rem;
 }
 
 footer p {
     margin: 0.3rem 0;
+}
+
+/* Para telas Médias (Tablets e Notebooks Pequenos) */
+/* (Entre 769px e 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+    header h1 {
+        font-size: 32px; 
+    }
+
+    .humores {
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+
+    .humores button {
+        width: 45%; 
+        max-width: 280px; 
+        height: auto;
+        padding: 20px;
+    }
+
+    .humores button.personalizado {
+        width: 45%;
+        max-width: 280px;
+        height: 80px; 
+    }
+
+    .filtros-visivel {
+        padding: 20px;
+    }
+}
+
+/* === RESPONSIVO: ESTILOS PARA TELAS MENORES QUE 768PX === */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 28px; 
+        gap: 0.5rem;
+    }
+
+    header p {
+        font-size: 16px;
+        padding: 0 1rem; 
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    .humores {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center; 
+    }
+
+    .humores button {
+        width: 100%; 
+        max-width: 350px; 
+        height: auto; 
+        padding: 20px; 
+    }
+
+    .humores button.personalizado {
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .playlist {
+        padding: 10px; 
+        gap: 8px; 
+    }
+
+    .musica {
+        padding: 10px 15px;
+    }
+
+    .musica-info strong {
+        font-size: 1rem; 
+    }
+
+    .musica-info span {
+        font-size: 0.8rem; 
+    }
+
+    .musica-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem; 
+    }
+
+    .salvar-form {
+        padding: 15px;
+    }
+
+    .salvar-form h3 {
+        font-size: 1.2rem;
+    }
 }

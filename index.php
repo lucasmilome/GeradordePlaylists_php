@@ -103,9 +103,13 @@
     <?php if (!empty($playlists)): ?>
         <h2 style="margin-top: 5rem;">Playlists Salvas</h2>
 
+        <input type="text" id="campoBuscaPlaylist" placeholder="🔎 Buscar pelo nome...">
+
         <ul class="playlists-salvas"> <?php foreach ($playlists as $p): ?>
             <li>
-                <strong><?= htmlspecialchars($p['name']) ?></strong><br>
+                <a href="playlist.php?id=<?= $p['id'] ?>">
+                    <strong><?= htmlspecialchars($p['name']) ?></strong>
+                </a>
                 <p><?= htmlspecialchars($p['description'] ?? 'Sem descrição') ?></p>
                 <em>Criada em <?= date('d/m/Y', strtotime($p['created_at'])) ?></em>
             </li>
@@ -172,12 +176,30 @@
     const slider = document.getElementById('sliderQuantidade');
     const valorDisplay = document.getElementById('valorQuantidade');
 
-    // Garante que só executa se o slider existir na página
     if (slider && valorDisplay) {
         
-        // 'input' é o evento que dispara ENQUANTO você arrasta
         slider.addEventListener('input', () => {
             valorDisplay.textContent = slider.value;
+        });
+    };
+
+    const campoBusca = document.getElementById('campoBuscaPlaylist');
+
+    if (campoBusca) {
+        
+        campoBusca.addEventListener('keyup', () => {
+            const textoBusca = campoBusca.value.toLowerCase();
+            const listaPlaylists = document.querySelectorAll('.playlists-salvas li');
+
+            listaPlaylists.forEach(item => {
+                const nomePlaylist = item.querySelector('strong').textContent.toLowerCase();
+
+                if (nomePlaylist.includes(textoBusca)) {
+                    item.style.display = 'block'; 
+                } else {
+                    item.style.display = 'none'; 
+                }
+            });
         });
     };
 
