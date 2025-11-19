@@ -131,7 +131,10 @@
 
             filtros.classList.add('filtros-visivel'); 
             
-            window.scrollTo({ top: filtros.offsetTop, behavior: 'smooth' });
+            document.querySelector('#filtros').scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
 
             if (humor === 'personalizado') {
                 campoPersonalizado.style.display = 'block';
